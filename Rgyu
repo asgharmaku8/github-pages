@@ -1,0 +1,33 @@
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const sadrMokharBtn = document.getElementById('sadrMokharBtn');
+    const outputElement = document.getElementById('output');
+    let originalString = "ا ل ب ی خ"; // رشته اولیه
+    let currentString = originalString;
+
+    outputElement.textContent = `رشته فعلی: ${currentString}`; // نمایش رشته اولیه
+
+    sadrMokharBtn.addEventListener('click', () => {
+        // تبدیل رشته به آرایه حروف
+        const chars = currentString.split(' ');
+
+        // انجام عملیات صدر و موخر (چرخش به چپ)
+        // اولین حرف به آخر آرایه منتقل می‌شود
+        const firstChar = chars.shift(); // حذف اولین عنصر و برگرداندن آن
+        chars.push(firstChar); // اضافه کردن عنصر حذف شده به آخر
+
+        // تبدیل آرایه حروف به رشته با فاصله بین آنها
+        currentString = chars.join(' ');
+
+        // نمایش رشته جدید
+        outputElement.textContent = `رشته فعلی: ${currentString}`;
+
+        // بررسی اینکه آیا به حالت اولیه برگشته‌ایم یا خیر
+        if (currentString === originalString) {
+            alert("چرخش کامل شد! رشته به حالت اولیه برگشت.");
+            // می‌توانید در اینجا دکمه را غیرفعال کنید یا عملیات دیگری انجام دهید
+            // sadrMokharBtn.disabled = true;
+        }
+    });
+});
+</script>
